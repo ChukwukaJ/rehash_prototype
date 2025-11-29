@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Rehash Connect – Prototype</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo">Rehash<span>Connect</span></div>
+    <nav class="nav">
+      <button class="nav-btn" data-target="landing-section">Home</button>
+      <button class="nav-btn" data-target="auth-section">Login / Sign Up</button>
+      <button class="nav-btn" data-target="explore-section">Explore Artists</button>
+      <button class="nav-btn" data-target="artist-dashboard-section">Artist Dashboard</button>
+      <button class="nav-btn" data-target="audience-dashboard-section">Audience Dashboard</button>
+      <button class="nav-btn" data-target="events-section">Events</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Landing / Home -->
+    <section id="landing-section" class="page-section active">
+      <div class="hero">
+        <h1>Rehash Connect</h1>
+        <p>
+          A collaborative space for African and global creatives to connect,
+          co-create, and host intimate live or virtual music experiences.
+        </p>
+        <div class="hero-actions">
+          <button class="primary" data-target="auth-section">Get Started</button>
+          <button class="secondary" data-target="explore-section">Explore Artists</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Auth -->
+    <section id="auth-section" class="page-section">
+      <h2>Login / Sign Up</h2>
+      <p>Simulated login just to switch between Artist and Audience views.</p>
+
+      <form id="authForm" class="card auth-form">
+        <label>
+          Name
+          <input type="text" id="authName" placeholder="Your name" required />
+        </label>
+
+        <label>
+          Email
+          <input type="email" id="authEmail" placeholder="you@example.com" required />
+        </label>
+
+        <label>
+          Role
+          <select id="authRole">
+            <option value="artist">Artist</option>
+            <option value="audience">Audience</option>
+          </select>
+        </label>
+
+        <div class="auth-actions">
+          <button type="submit" class="primary">Continue</button>
+        </div>
+      </form>
+
+      <p class="hint">
+        For demo: just fill the form and choose a role. No real backend.
+      </p>
+    </section>
+
+    <!-- Artist Dashboard -->
+    <section id="artist-dashboard-section" class="page-section">
+      <h2>Artist Dashboard</h2>
+      <p id="artistWelcome"></p>
+
+      <div class="grid-2">
+        <!-- Profile -->
+        <div class="card">
+          <h3>My Profile</h3>
+          <form id="profileForm">
+            <label>
+              Stage Name
+              <input type="text" id="profileName" />
+            </label>
+            <label>
+              Location
+              <input type="text" id="profileLocation" placeholder="Kigali, Rwanda" />
+            </label>
+            <label>
+              Genre
+              <input type="text" id="profileGenre" placeholder="Afro-soul, RnB..." />
+            </label>
+            <label>
+              Bio
+              <textarea id="profileBio" rows="3" placeholder="Short artist bio"></textarea>
+            </label>
+            <button type="submit" class="primary small">Save Profile</button>
+          </form>
+        </div>
+
+        <!-- Media -->
+        <div class="card">
+          <h3>My Snippets</h3>
+          <ul id="snippetList" class="simple-list"></ul>
+          <form id="snippetForm" class="inline-form">
+            <input type="text" id="snippetTitle" placeholder="New snippet title" />
+            <button type="submit" class="secondary small">Add</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="card mt">
+        <h3>My Events</h3>
+        <ul id="eventList" class="simple-list"></ul>
+
+        <h4>Create New Event</h4>
+        <form id="eventForm" class="grid-3 compact">
+          <input type="text" id="eventTitle" placeholder="Event title" required />
+          <input type="datetime-local" id="eventDate" required />
+          <input type="text" id="eventTheme" placeholder="Theme (optional)" />
+          <button type="submit" class="primary small">Create Event</button>
+        </form>
+      </div>
+
+      <div class="card mt">
+        <h3>Collaboration Room (Demo)</h3>
+        <button id="openCollabRoomBtn" class="secondary small">
+          Join Collaboration Room
+        </button>
+      </div>
+    </section>
+
+    <!-- Audience Dashboard -->
+    <section id="audience-dashboard-section" class="page-section">
+      <h2>Audience Dashboard</h2>
+      <p id="audienceWelcome"></p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Recommended Artists</h3>
+          <ul id="recommendedArtists" class="simple-list"></ul>
+        </div>
+
+        <div class="card">
+          <h3>Upcoming Events</h3>
+          <ul id="upcomingEventsSummary" class="simple-list"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Audience Home / Explore -->
+    <section id="explore-section" class="page-section">
+      <h2>Explore Artists</h2>
+      <p>
+        Discover African and global creatives open to collaboration and intimate
+        performance sessions.
+      </p>
+
+      <div class="filters">
+        <input type="text" id="searchInput" placeholder="Search by name, country, or genre" />
+        <select id="genreFilter">
+          <option value="">Filter by genre</option>
+          <option value="Afrobeat">Afrobeat</option>
+          <option value="Afro-soul">Afro-soul</option>
+          <option value="RnB">RnB</option>
+          <option value="Gospel">Gospel</option>
+        </select>
+      </div>
+
+      <div id="artistCards" class="card-list"></div>
+    </section>
+
+    <!-- Collaboration Room -->
+    <section id="collab-room-section" class="page-section">
+      <h2>Collaboration Room – Demo</h2>
+      <p>Simulated collab room with simple real-time-like chat.</p>
+
+      <div class="room-layout">
+        <div class="card">
+          <h3>Session Info</h3>
+          <p><strong>Room:</strong> AfroSoul x Global Session</p>
+          <p><strong>Status:</strong> <span id="roomStatus">Live</span></p>
+          <button id="toggleRoomStatusBtn" class="secondary small">Toggle Live / Offline</button>
+
+          <h4>Participants</h4>
+          <ul id="participantList" class="simple-list">
+            <li>You (current user)</li>
+            <li>Artist A – Lagos</li>
+            <li>Artist B – Kigali</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Chat</h3>
+          <div id="chatMessages" class="chat-box"></div>
+          <form id="chatForm" class="inline-form">
+            <input type="text" id="chatInput" placeholder="Type a message..." />
+            <button type="submit" class="primary small">Send</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Event View (for audience) -->
+    <section id="event-view-section" class="page-section">
+      <h2>Live Event – Demo</h2>
+      <div class="card">
+        <p><strong>Event:</strong> <span id="viewEventTitle">Intimate Rehearsal Session</span></p>
+        <p><strong>Date:</strong> <span id="viewEventDate">TBA</span></p>
+        <p><strong>Host:</strong> <span id="viewEventHost">Demo Artist</span></p>
+        <p><strong>Theme:</strong> <span id="viewEventTheme">Behind the music</span></p>
+        <button id="joinEventBtn" class="primary small">Join Event</button>
+      </div>
+
+      <div class="card mt">
+        <h3>Event Chat (Audience)</h3>
+        <div id="eventChatMessages" class="chat-box"></div>
+        <form id="eventChatForm" class="inline-form">
+          <input type="text" id="eventChatInput" placeholder="Say something to the artist..." />
+          <button type="submit" class="secondary small">Send</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Events Page -->
+    <section id="events-section" class="page-section">
+      <h2>Events</h2>
+      <p>Browse upcoming and demo events hosted on Rehash Connect.</p>
+      <div class="card">
+        <ul id="allEventsList" class="simple-list"></ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Rehash Connect – Prototype for Introduction to Software Engineering Summative</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

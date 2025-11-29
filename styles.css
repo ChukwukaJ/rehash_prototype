@@ -1,0 +1,269 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+  background: #050814;
+  color: #f5f5f7;
+  min-height: 100vh;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1.5rem;
+  background: #080c1f;
+  border-bottom: 1px solid #22263a;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.logo span {
+  color: #ff5c9a;
+}
+
+.nav {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.nav-btn {
+  background: transparent;
+  border: 1px solid #3a3f5a;
+  color: #f5f5f7;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.nav-btn:hover {
+  background: #1b2035;
+}
+
+/* Sections + transitions */
+main {
+  padding: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.page-section {
+  display: none;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  margin-bottom: 3rem;
+}
+
+.page-section.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero {
+  text-align: center;
+  padding: 4rem 1rem;
+}
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+.hero p {
+  color: #c5c7d8;
+  max-width: 600px;
+  margin: 0.5rem auto 1.5rem;
+}
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.primary,
+.secondary {
+  border-radius: 999px;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.primary {
+  background: linear-gradient(135deg, #ff5c9a, #ffb45c);
+  color: #050814;
+  font-weight: 600;
+}
+
+.secondary {
+  background: #171c30;
+  color: #f5f5f7;
+  border: 1px solid #343956;
+}
+
+.small {
+  padding: 0.3rem 0.8rem;
+  font-size: 0.8rem;
+}
+
+.card {
+  background: #0c1021;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  border: 1px solid #232842;
+  margin-top: 1rem;
+}
+
+.auth-form label,
+#profileForm label {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 0.7rem;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  margin-top: 0.25rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.5rem;
+  border: 1px solid #2b3152;
+  background: #050814;
+  color: #f5f5f7;
+  font-size: 0.9rem;
+}
+
+.auth-actions {
+  margin-top: 0.7rem;
+}
+
+.hint {
+  margin-top: 0.7rem;
+  font-size: 0.8rem;
+  color: #9a9eb8;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr auto;
+  gap: 0.5rem;
+}
+
+.compact input {
+  font-size: 0.8rem;
+}
+
+.mt {
+  margin-top: 1rem;
+}
+
+.simple-list {
+  list-style: none;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+.simple-list li {
+  padding: 0.25rem 0;
+  border-bottom: 1px solid #1b2035;
+}
+
+.inline-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.inline-form input {
+  flex: 1;
+}
+
+.filters {
+  display: flex;
+  gap: 0.7rem;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+}
+
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.8rem;
+}
+
+.artist-card {
+  background: #0c1021;
+  border-radius: 0.75rem;
+  padding: 0.8rem;
+  border: 1px solid #242947;
+}
+.artist-card h3 {
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+.artist-meta {
+  font-size: 0.8rem;
+  color: #a0a3bc;
+  margin-bottom: 0.5rem;
+}
+
+.room-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.chat-box {
+  background: #050814;
+  border-radius: 0.6rem;
+  border: 1px solid #232842;
+  height: 220px;
+  padding: 0.5rem;
+  overflow-y: auto;
+  font-size: 0.85rem;
+}
+
+.chat-message {
+  margin-bottom: 0.3rem;
+}
+.chat-message span {
+  font-weight: 600;
+  color: #ffb45c;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.8rem;
+  color: #888caf;
+  border-top: 1px solid #20263f;
+  margin-top: 2rem;
+}
+
+@media (max-width: 600px) {
+  main {
+    padding: 1rem;
+  }
+
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
