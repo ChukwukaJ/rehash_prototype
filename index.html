@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Rehash Connect – Prototype</title>
+  <title>Rehash – Prototype</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="topbar">
-    <div class="logo">Rehash<span>Connect</span></div>
+    <div class="logo">Rehash</div>
     <nav class="nav">
       <button class="nav-btn" data-target="landing-section">Home</button>
       <button class="nav-btn" data-target="auth-section">Login / Sign Up</button>
-      <button class="nav-btn" data-target="explore-section">Explore Artists</button>
+      <button class="nav-btn" data-target="explore-section">Explore Creatives</button>
       <button class="nav-btn" data-target="artist-dashboard-section">Artist Dashboard</button>
       <button class="nav-btn" data-target="audience-dashboard-section">Audience Dashboard</button>
       <button class="nav-btn" data-target="events-section">Events</button>
@@ -23,14 +23,11 @@
     <!-- Landing / Home -->
     <section id="landing-section" class="page-section active">
       <div class="hero">
-        <h1>Rehash Connect</h1>
-        <p>
-          A collaborative space for African and global creatives to connect,
-          co-create, and host intimate live or virtual music experiences.
-        </p>
+        <h1>Rehash</h1>
+        <p>Finding soul in every sound.</p>
         <div class="hero-actions">
           <button class="primary" data-target="auth-section">Get Started</button>
-          <button class="secondary" data-target="explore-section">Explore Artists</button>
+          <button class="secondary" data-target="explore-section">Explore Creatives</button>
         </div>
       </div>
     </section>
@@ -38,7 +35,7 @@
     <!-- Auth -->
     <section id="auth-section" class="page-section">
       <h2>Login / Sign Up</h2>
-      <p>Simulated login just to switch between Artist and Audience views.</p>
+      <p>Please select your role to continue.</p>
 
       <form id="authForm" class="card auth-form">
         <label>
@@ -53,9 +50,26 @@
 
         <label>
           Role
-          <select id="authRole">
+          <select id="authRole" required>
+            <option value="">-- Select Role --</option>
             <option value="artist">Artist</option>
             <option value="audience">Audience</option>
+          </select>
+        </label>
+
+        <!-- CREATIVE TYPE DROPDOWN (only appears for Artists) -->
+        <label id="creativeTypeWrapper" style="display:none;">
+          Creative Type
+          <select id="creativeType">
+            <option value="">-- Select Type --</option>
+            <option value="Singer">Singer</option>
+            <option value="Producer">Producer</option>
+            <option value="Spoken Word Artist">Spoken Word Artist</option>
+            <option value="Instrumentalist">Instrumentalist</option>
+            <option value="DJ">DJ</option>
+            <option value="Sound Engineer">Sound Engineer</option>
+            <option value="Dancer / Performer">Dancer / Performer</option>
+            <option value="Other">Other</option>
           </select>
         </label>
 
@@ -63,10 +77,6 @@
           <button type="submit" class="primary">Continue</button>
         </div>
       </form>
-
-      <p class="hint">
-        For demo: just fill the form and choose a role. No real backend.
-      </p>
     </section>
 
     <!-- Artist Dashboard -->
@@ -84,6 +94,10 @@
               <input type="text" id="profileName" />
             </label>
             <label>
+              Creative Type
+              <input type="text" id="profileCreative" disabled />
+            </label>
+            <label>
               Location
               <input type="text" id="profileLocation" placeholder="Kigali, Rwanda" />
             </label>
@@ -99,10 +113,11 @@
           </form>
         </div>
 
-        <!-- Media -->
+        <!-- Snippets -->
         <div class="card">
           <h3>My Snippets</h3>
           <ul id="snippetList" class="simple-list"></ul>
+
           <form id="snippetForm" class="inline-form">
             <input type="text" id="snippetTitle" placeholder="New snippet title" />
             <button type="submit" class="secondary small">Add</button>
@@ -125,9 +140,7 @@
 
       <div class="card mt">
         <h3>Collaboration Room (Demo)</h3>
-        <button id="openCollabRoomBtn" class="secondary small">
-          Join Collaboration Room
-        </button>
+        <button id="openCollabRoomBtn" class="secondary small">Join Collaboration Room</button>
       </div>
     </section>
 
@@ -138,7 +151,7 @@
 
       <div class="grid-2">
         <div class="card">
-          <h3>Recommended Artists</h3>
+          <h3>Recommended Creatives</h3>
           <ul id="recommendedArtists" class="simple-list"></ul>
         </div>
 
@@ -149,16 +162,13 @@
       </div>
     </section>
 
-    <!-- Audience Home / Explore -->
+    <!-- Explore Page -->
     <section id="explore-section" class="page-section">
-      <h2>Explore Artists</h2>
-      <p>
-        Discover African and global creatives open to collaboration and intimate
-        performance sessions.
-      </p>
+      <h2>Explore Creatives</h2>
+      <p>Discover creatives from Africa and across the world.</p>
 
       <div class="filters">
-        <input type="text" id="searchInput" placeholder="Search by name, country, or genre" />
+        <input type="text" id="searchInput" placeholder="Search by name, country, creative type, or genre" />
         <select id="genreFilter">
           <option value="">Filter by genre</option>
           <option value="Afrobeat">Afrobeat</option>
@@ -174,7 +184,7 @@
     <!-- Collaboration Room -->
     <section id="collab-room-section" class="page-section">
       <h2>Collaboration Room – Demo</h2>
-      <p>Simulated collab room with simple real-time-like chat.</p>
+      <p>Simulated collab room with simple chat.</p>
 
       <div class="room-layout">
         <div class="card">
@@ -202,7 +212,7 @@
       </div>
     </section>
 
-    <!-- Event View (for audience) -->
+    <!-- Event Viewer -->
     <section id="event-view-section" class="page-section">
       <h2>Live Event – Demo</h2>
       <div class="card">
@@ -214,10 +224,10 @@
       </div>
 
       <div class="card mt">
-        <h3>Event Chat (Audience)</h3>
+        <h3>Event Chat</h3>
         <div id="eventChatMessages" class="chat-box"></div>
         <form id="eventChatForm" class="inline-form">
-          <input type="text" id="eventChatInput" placeholder="Say something to the artist..." />
+          <input type="text" id="eventChatInput" placeholder="Say something..." />
           <button type="submit" class="secondary small">Send</button>
         </form>
       </div>
@@ -226,15 +236,16 @@
     <!-- Events Page -->
     <section id="events-section" class="page-section">
       <h2>Events</h2>
-      <p>Browse upcoming and demo events hosted on Rehash Connect.</p>
+      <p>Browse all events hosted on Rehash.</p>
       <div class="card">
         <ul id="allEventsList" class="simple-list"></ul>
       </div>
     </section>
+
   </main>
 
   <footer>
-    <p>Rehash Connect – Prototype for Introduction to Software Engineering Summative</p>
+    <p>Rehash – Prototype for Introduction to Software Engineering Summative</p>
   </footer>
 
   <script src="script.js"></script>
